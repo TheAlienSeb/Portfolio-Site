@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sebastian's Portfolio</title>
-  <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="/src/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
@@ -18,17 +18,17 @@
     </ul>
 </header>
 <div class="home-container">
-  <button id="toggle-animation" class="icon-button"><img id="toggle-icon" src="./public/play-button.png" alt="Pause"></button>
-<section class="home">
-  <h1>Hello!</h1>
-  <h1>I'm Sebastian Ramos</h1>
-  <h2>A <span id="typing"></span></h2>
-  <div class="socials">
-    <a href="https://github.com/TheAlienSeb" alt="Github" target="_blank"><img src="./public/6214715_github_logo_icon.png"></a>
-    <a href="www.linkedin.com/in/sebastianramosnyc" alt="LinkedIn" target="_blank"><img src="./public/6214710_linkedin_logo_icon.png"></a>
-    <a id="resume">Resume</a>
-  </div>
-</section>
+  <button id="toggle-animation" class="icon-button"><img id="toggle-icon" src="/play-button.png" alt="Pause"></button>
+  <section class="home">
+    <h1>Hello!</h1>
+    <h1>I'm Sebastian Ramos</h1>
+    <h2>A <span id="typing"></span></h2>
+    <div class="socials">
+      <a href="https://github.com/TheAlienSeb" alt="Github" target="_blank"><img src="./6214715_github_logo_icon.png"></a>
+      <a href="https://www.linkedin.com/in/sebastianramosnyc" alt="LinkedIn" target="_blank"><img src="./6214710_linkedin_logo_icon.png"></a>
+      <a id="resume">Resume</a>
+    </div>
+  </section>
 </div>
 <section class="projects">
   <h1>Projects</h1>
@@ -56,23 +56,22 @@
   </a>
 
     <div class="project">
-      <h2>Under contruction</h2>
-      <div class="sine-text-container">
-        <svg class="sine-wave" viewBox="0 0 200 50" preserveAspectRatio="none">
-          <defs>
-            <path id="sine-path" d="M 0 25 Q 10 0, 20 25 T 40 25 T 60 25 T 80 25 T 100 25 T 120 25 T 140 25 T 160 25 T 180 25 T 200 25" />
-          </defs>
+      <h2>Under construction</h2>
+<div class="sine-text-container">
+      <svg class="sine-wave" viewBox="0 0 200 50" preserveAspectRatio="none">
+<defs>
+        <path id="sine-path" d="M 0 25 Q 10 0, 20 25 T 40 25 T 60 25 T 80 25 T 100 25 T 120 25 T 140 25 T 160 25 T 180 25 T 200 25" />
+</defs>
           <g class="wave-group">
             <use xlink:href="#sine-path" class="sine-wave"/>
             <use xlink:href="#sine-path" class="sine-wave" x="200" />
           </g>
-        </svg>
-        <div class="project-content">
-          <img src="./public/icons8-under-construction-50.png" alt="Under construction">
-        </div>
-      </div>
+      </svg>
+      <div class="project-content">
+        <img src="./icons8-under-construction-50.png" alt="Under construction">
     </div>
 
+  </div>
 </section>
 
 <section class="about">
@@ -84,13 +83,13 @@
       </p>
     </div>
     <div class="about-image">
-      <img src="" alt="Profile picture">
+      <img src="./profile-pic.jpg" alt="Profile picture">
     </div>
   </div>
 
 <footer></footer>
-<script type="module" src="./src/main.js"></script>
-<script src="./src/typingEffect.js" type="module"></script>
-<script src="./src/gol.js" type="module" ></script>
+<script type="module" src="/src/main.js"></script>
+<script src="/src/typingEffect.js" type="module"></script>
+<script src="/src/gol.js" type="module"></script>
 </body>
 </html>

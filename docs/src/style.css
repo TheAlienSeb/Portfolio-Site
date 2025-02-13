@@ -64,6 +64,13 @@ header {
   border: solid 1px rgb(0, 0, 0);
 }
 
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Ensure the canvas is behind other elements */
+}
+
 .socials {
   margin-top: .5rem;
   display: flex;

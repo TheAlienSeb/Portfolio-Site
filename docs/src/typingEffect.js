@@ -32,3 +32,15 @@ function erase_word() {
 document.addEventListener("DOMContentLoaded", function () {
   if (attributes.length) setTimeout(type, delayBetweenAttributes + 250);
 });
+
+function toggleAnimation() {
+  isAnimating = !isAnimating;
+  let icon = document.getElementById('toggle-icon');
+  if (isAnimating) {
+    icon.src = './pause-button.png'; // Placeholder for pause icon
+  } else {
+    icon.src = './play-button.png'; // Placeholder for play icon
+  }
+}
+
+console.log('loaded')

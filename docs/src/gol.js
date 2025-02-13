@@ -5,19 +5,32 @@ let isAnimating = false;
 
 function setup() {
   let homeContainer = document.querySelector('.home-container');
+  // Fallback to document.body if .home-container isn't found
+  if (!homeContainer) {
+    homeContainer = document.body;
+  }
+  
   let canvas = createCanvas(homeContainer.offsetWidth, homeContainer.offsetHeight);
   canvas.position(homeContainer.offsetLeft, homeContainer.offsetTop);
+  // You can remove the z-index style if it causes issues, but keeping it for now
   canvas.style('z-index', '-1');
+  
   cols = floor(width / cellSize);
   rows = floor(height / cellSize);
   grid = make2DArray(cols, rows);
   resetToGliders();
   frameRate(10); // Adjust for a pleasing speed
 
-  document.getElementById('toggle-animation').addEventListener('mousedown', toggleAnimation);
+  const toggleButton = document.getElementById('toggle-animation');
+  if (toggleButton) {
+    toggleButton.addEventListener('mousedown', toggleAnimation);
+  } else {
+    console.error("Element with id 'toggle-animation' not found!");
+  }
 }
 
 function draw() {
+  clear();
   stroke(200);
   for (let x = 0; x < width; x += cellSize) {
     for (let y = 0; y < height; y += cellSize) {
@@ -25,7 +38,7 @@ function draw() {
       line(0, y, width, y);
     }
   }
-  clear();
+
   // Draw the current grid
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -85,6 +98,9 @@ function draw() {
 
 function windowResized() {
   let homeContainer = document.querySelector('.home-container');
+  if (!homeContainer) {
+    homeContainer = document.body;
+  }
   resizeCanvas(homeContainer.offsetWidth, homeContainer.offsetHeight);
   cols = floor(width / cellSize);
   rows = floor(height / cellSize);
@@ -104,7 +120,7 @@ function make2DArray(cols, rows) {
 // Reset the grid and place multiple gliders
 function resetToGliders() {
   grid = make2DArray(cols, rows);
-  let numberOfGliders = 10; // You can adjust the number as needed
+  let numberOfGliders = 10; // Adjust as needed
   for (let n = 0; n < numberOfGliders; n++) {
     let x = floor(random(cols - 3));
     let y = floor(random(rows - 3));
@@ -118,21 +134,23 @@ function resetToGliders() {
 //   . . X
 //   X X X
 function addGlider(x, y) {
-  grid[x+1][y] = 1;
-  grid[x+2][y+1] = 1;
-  grid[x][y+2] = 1;
-  grid[x+1][y+2] = 1;
-  grid[x+2][y+2] = 1;
+  grid[x + 1][y] = 1;
+  grid[x + 2][y + 1] = 1;
+  grid[x][y + 2] = 1;
+  grid[x + 1][y + 2] = 1;
+  grid[x + 2][y + 2] = 1;
 }
 
 // Toggle animation and switch icon
 function toggleAnimation() {
   isAnimating = !isAnimating;
   let icon = document.getElementById('toggle-icon');
-  if (isAnimating) {
-    icon.src = '/pause-button.png'; // Placeholder for pause icon
-  } else {
-    icon.src = '/play-button.png'; // Placeholder for play icon
+  if (icon) {
+    if (isAnimating) {
+      icon.src = './pause-button.png'; // Placeholder for pause icon
+    } else {
+      icon.src = './play-button.png'; // Placeholder for play icon
+    }
   }
 }
 
@@ -158,3 +176,13 @@ function toggleDot() {
     grid[i][j] = grid[i][j] === 1 ? 0 : 1;
   }
 }
+
+console.log('loaded');
+
+// Expose p5.js lifecycle functions to the global window so that p5.js can find them:
+window.setup = setup;
+window.draw = draw;
+window.mousePressed = mousePressed;
+window.mouseDragged = mouseDragged;
+window.windowResized = windowResized;
+window.toggleAnimation = toggleAnimation;
