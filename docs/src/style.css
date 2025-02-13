@@ -59,7 +59,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  z-index: 1; /* Ensure the header is above the canvas */
+  z-index: -1; /* Ensure the header is above the canvas */
   position: relative;
   border: solid 1px rgb(0, 0, 0);
 }
