@@ -10,18 +10,20 @@
 <body>
 <header>
     <h3>Sebastian's Portfolio</h3>
-    <ul>
-      <li>Home</li>
-      <li>Projects</li>
-      <li>About</li>
-      <li>Contact</li>
+    <ul class="un-hidden">
+      <li class="nav-home hidden"><a href="#home">Home</a></li>
+      <li class="nav-projects hidden"><a href="#projects">Projects</a></li>
+      <li class="nav-about hidden"><a href="#about">About</a></li>
+      <li class="nav-contact hidden"><a href="#contact">Contact</a></li>
+      <li class="resume-exit hidden"><a href="#" id="exit-resume">Exit</a></li>
     </ul>
 </header>
 
-<div class="home-container">
-  <button id="toggle-animation" class="icon-button">
-    <img id="toggle-icon" src="/play-button.png" alt="Pause">
-  </button>
+<div id="resume-viewer" class="hidden">
+  <iframe src="/Sebastian_Resume_Feb12_2025.pdf" width="100%" height="100%"></iframe>
+</div>
+
+<div id="home" class="home-container">
   <section class="home">
     <h1>Hello!</h1>
     <h1>I'm Sebastian Ramos</h1>
@@ -31,14 +33,17 @@
         <img src="/6214715_github_logo_icon.png">
       </a>
       <a href="https://www.linkedin.com/in/sebastianramosnyc" alt="LinkedIn" target="_blank">
-        <img src="docs\public\6214710_linkedin_logo_icon.png">
+        <img src="/6214710_linkedin_logo_icon.png">
       </a>
       <a id="resume">Resume</a>
+      <button id="toggle-animation" class="icon-button">
+        <img id="toggle-icon" src="/pause-button.png" alt="Pause">
+      </button>
     </div>
   </section>
 </div>
 
-<section class="projects">
+<section id="projects" class="projects">
   <h1>Projects</h1>
   <div class="project-container">
     <a href="https://github.com/TheAlienSeb/Impulse_control_redo" target="_blank">
@@ -83,19 +88,19 @@
   </div>
 </section>
 
-<section class="about">
+<section id="about" class="about">
   <h1>About</h1>
   <div class="about-container">
     <div class="about-content">
-        <h2>
-          I am a current student at Hunter College CUNY studying Computer Science and Chinese.
-        </h2>
-        <h2>
-          I currently enjoy playing video games, learning new languages, and working on personal projects.
-        </h2>
-        <h2>
-            I am currently focused on my chinese proficiency (From advanced low to fluent) and learning more about React and web development.
-        </h2>
+      <h2>
+        I am a Computer Science and Chinese student at Hunter College, CUNY.
+      </h2>
+      <h2>
+        I enjoy playing video games, learning new languages, and working on personal projects.
+      </h2>
+      <h2>
+        I am currently focused on improving my Chinese proficiency (from Advanced Low to fluent) and deepening my knowledge of React and web development.
+      </h2>    
         <h1 class="current-techstack">Current Languages and Frameworks</h1>
         <ul class="techstack">
           <div class="techstack-image"><li><img alt="JS" src="icons8-js-50.png"/></li></div>
@@ -104,33 +109,112 @@
           <div class="techstack-image"><li><img alt="C++" src="icons8-c-50.png"/></li></div>
           <div class="techstack-image"><li><img alt="Python" src="icons8-python-50.png"/></li></div>
         </ul>
-
-
     </div>
   </div>
-</section>
 
-
-<section class="contact">
+<section id="contact" class="contact">
   <h1>Contact</h1>
   <div class="contact-container">
-    <form class="contact-form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Subject" required>
-      <textarea placeholder="Message" required></textarea>
+    <form class="contact-form" action="https://formspree.io/f/xdkalrkd" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="_replyto" placeholder="Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Message" required></textarea>
       <button type="submit">Send</button>
     </form>
   </div>
+</section>
 
-
-
-<footer></footer>
+<section id="footer" class="footer">
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Sebastian Ramos | All rights reserved.</p>
+    </div>
+  </footer>
+</section>
 
 <!-- Fix JavaScript imports -->
 <script type="module" src="/src/main.js"></script>
 <script type="module" src="/src/typingEffect.js"></script>
 <script type="module" src="/src/gol.js"></script>
-
+<script>
+  document.querySelector(".nav-home").classList.remove("hidden");
+  document.querySelector(".nav-projects").classList.remove("hidden");
+  document.querySelector(".nav-about").classList.remove("hidden");
+  document.querySelector(".nav-contact").classList.remove("hidden");
+  
+  document.querySelectorAll('header ul li a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - document.querySelector('header').offsetHeight,
+          behavior: 'smooth'
+        });
+      });
+    });
+  
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const formData = new FormData(form);
+      
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          alert('Thank you for your message!');
+          form.reset();
+        } else {
+          alert('Oops! There was a problem submitting your form');
+        }
+      }).catch(error => {
+        alert('Oops! There was a problem submitting your form');
+      });
+    });
+  
+    document.getElementById("resume").addEventListener("click", function () {
+      document.getElementById("resume-viewer").classList.remove("hidden");
+      document.querySelector("body").classList.add("resume-active");
+  
+      // Hide all sections except the header
+      document.querySelectorAll("section").forEach(section => {
+        section.style.visibility = "hidden";
+        section.style.opacity = "0";
+      });
+  
+      // Show the exit button
+      document.querySelector(".nav-home").classList.add("hidden");
+      document.querySelector(".nav-projects").classList.add("hidden");
+      document.querySelector(".nav-about").classList.add("hidden");
+      document.querySelector(".nav-contact").classList.add("hidden");
+      document.querySelector(".resume-exit").classList.remove("hidden");
+    });
+  
+    // Restore the normal website view when the exit button is clicked
+    document.getElementById("exit-resume").addEventListener("click", function () {
+      document.getElementById("resume-viewer").classList.add("hidden");
+      document.querySelector("body").classList.remove("resume-active");
+  
+      // Show all sections again
+      document.querySelectorAll("section").forEach(section => {
+        section.style.visibility = "visible";
+        section.style.opacity = "1";
+      });
+  
+      // Hide the exit button
+      document.querySelector(".resume-exit").classList.add("hidden");
+      document.querySelector(".nav-home").classList.remove("hidden");
+      document.querySelector(".nav-projects").classList.remove("hidden");
+      document.querySelector(".nav-about").classList.remove("hidden");
+      document.querySelector(".nav-contact").classList.remove("hidden");
+    });
+  </script>
 </body>
 </html>

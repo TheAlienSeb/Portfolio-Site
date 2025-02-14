@@ -1,7 +1,7 @@
 let grid;
 let cols, rows;
 let cellSize = 20;
-let isAnimating = false;
+let isAnimating = true;
 
 function setup() {
   let homeContainer = document.querySelector('.home-container');
