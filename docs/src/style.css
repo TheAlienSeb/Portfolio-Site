@@ -59,7 +59,7 @@ header {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  z-index: -1; /* Ensure the header is above the canvas */
+  z-index: 1; /* Ensure the header is above the canvas */
   position: relative;
   border: solid 1px rgb(0, 0, 0);
 }
@@ -302,6 +302,137 @@ a {
     transform: translateY(80%);  /* Move the sine wave and content up */
   }
 }
+
+
+/********** About section **********/
+
+.about{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.about-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+
+.about-content{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;  
+  padding: 2rem;
+  background-color: white;
+  width: 100%;
+  align-items: center;
+}
+
+.about-content h2 {
+  display: flex;  
+  justify-content: left;
+  padding: 0;
+  margin-left: 0;
+}
+.about h1 {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  text-align: center; /* Ensures text inside is centered */
+  margin-top: 2rem;
+  font-size: 2rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.current-techstack{
+  border: solid 1px rgb(0, 0, 0);
+  display: inline-block;
+  padding: 5px;
+  margin:0;
+}
+.techstack{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+.techstack-image{
+  width: 4rem;
+  height: 2.3rem;
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+  border: solid 1px rgb(0, 0, 0);
+  padding: 5px;
+  padding-bottom: 10px;
+}
+.techstack-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/********** Contact section **********/
+.contact{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+.contact h1 {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  text-align: center; /* Ensures text inside is centered */
+  margin-top: 2rem;
+  font-size: 2rem;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.contact-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%; /* Make inputs span full width */
+  max-width: 80%; /* Prevent excessive stretching */
+  padding: 12px; /* Increase padding for better usability */
+  font-size: 1rem; /* Make text inside inputs larger */
+  margin-bottom: 1rem; /* Add spacing between fields */
+  border: 1px solid #ccc; /* Optional: subtle border */
+  border-radius: 5px; /* Slight rounding */
+}
+
+.contact-form textarea {
+  height: 150px; /* Give more space for message input */
+  resize: vertical; /* Allow resizing */
+}
+
+.contact-form button {
+  padding: 12px 24px; /* Make button bigger */
+  font-size: 1rem; /* Improve readability */
+  cursor: pointer; /* Indicate it's clickable */
+  border: solid 1px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  box-shadow: 0 0 0 2px rgb(0, 0, 0);
+}
+
 
 
 /********** Typing Animation **********/
