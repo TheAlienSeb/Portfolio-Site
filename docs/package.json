@@ -1,6 +1,6 @@
 {
   "name": "my-portfolio",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://TheAlienSeb.github.io/Portfolio-Site",
